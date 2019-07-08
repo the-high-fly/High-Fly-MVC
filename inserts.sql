@@ -29,4 +29,22 @@ insert into veicolo_privato
 values (5, 1, 30, 'Bicicletta');
 insert into veicolo_privato
 values (6, 1, 20, 'Bicicletta');
+insert into veicolo_privato
+values (7, 7, 140, 'Macchina');
 
+insert into veicolo_pubblico
+values (1, 150, 50, 'Treno');
+insert into veicolo_pubblico
+values (2, 80, 300, 'Aereo');
+insert into veicolo_pubblico
+values (3, 50, 350, 'Aereo');
+insert into veicolo_pubblico
+values (4, 60, 400, 'Aereo');
+insert into veicolo_pubblico
+values (5, 200, 35, 'Treno');
+insert into veicolo_pubblico
+values (6, 300, 20, 'Treno');
+insert into veicolo_pubblico
+values (7, 350, 800, 'Nave');
+insert into veicolo_pubblico
+values (8, 400, 1200, 'Nave');
