@@ -48,3 +48,20 @@ insert into veicolo_pubblico
 values (7, 350, 800, 'Nave');
 insert into veicolo_pubblico
 values (8, 400, 1200, 'Nave');
+
+insert into prenotazione_pubblico
+	values ('90cb9bff-6ec0-4bb1-8e90-cd070ac0a03c', 1, 1, 'Vincenzo', 
+		'Tronoforo', 150, 7500, to_date('20/10/2019', 'DD/MM/YYYY'), 'Roma', 'Milano', 'Pending');
+/* TODO aggiungere partenza e arrivo ai veicoli pubblici
+
+90cb9bff-6ec0-4bb1-8e90-cd070ac0a03c
+4b9780e7-8e10-4c63-91c2-62ce79645ed5
+a999aa87-3bed-4caf-9c3b-72c967675ea1
+130c2689-d636-4c4c-b6f0-241d867cbbc6
+e341ffb2-8873-4948-ac8a-37d795495a21
+5ae2109d-ac4f-497c-89d3-48d670788c92
+7259d967-04a4-42c2-87a1-a27f371fc460
+5117c6d6-e5e4-4d4a-bcad-5ffe643c1814
+2ff0775f-84db-4327-afad-8c58b1f74298
+a7f2c267-38e6-4eb4-a607-8832fb167a60
+*/
