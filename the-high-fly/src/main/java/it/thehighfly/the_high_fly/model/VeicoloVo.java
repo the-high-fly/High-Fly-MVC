@@ -5,13 +5,13 @@ public class VeicoloVo {
 	private int id;
 	private int numPosti;
 	private double prezzo;
-	private String descrizione;
+	private String tipo;
 	
-	public VeicoloVo(int id, int numPosti, double prezzo, String descrizione) {
+	public VeicoloVo(int id, int numPosti, double prezzo, String tipo) {
 		this.id = id;
 		this.numPosti = numPosti;
 		this.prezzo = prezzo;
-		this.descrizione = descrizione;
+		this.tipo = tipo;
 	}
 
 	public int getId() {
@@ -38,12 +38,18 @@ public class VeicoloVo {
 		this.prezzo = prezzo;
 	}
 
-	public String getDescrizione() {
-		return descrizione;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "ID veicolo: " + id + ", i posti totali sono " + 
+				numPosti + ", il costo è " + prezzo + " ed è un veicolo di tipo " + tipo;
 	}
 	
 	
