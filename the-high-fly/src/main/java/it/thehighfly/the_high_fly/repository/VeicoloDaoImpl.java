@@ -15,7 +15,7 @@ import it.thehighfly.the_high_fly.model.VeicoloVo;
 public class VeicoloDaoImpl implements VeicoloDao {
  
 	@Autowired(required=true)
-	private DatabaseManager databaseManager; 
+//	private DatabaseManager databaseManager; 
 	
 	@Override
 	public ArrayList<VeicoloVo> getListaVeicoli() {
@@ -25,7 +25,7 @@ public class VeicoloDaoImpl implements VeicoloDao {
 		Connection connection = null;
 		PreparedStatement stm;
 		try {
-			connection = databaseManager.getConnection();
+//			connection = databaseManager.getConnection();
 			stm = connection.prepareStatement(query);
 			ResultSet rs = stm.executeQuery();
 			
