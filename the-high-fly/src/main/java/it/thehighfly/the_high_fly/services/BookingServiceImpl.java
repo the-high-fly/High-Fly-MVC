@@ -1,29 +1,30 @@
 package it.thehighfly.the_high_fly.services;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import it.thehighfly.the_high_fly.controller.BookingDto;
 import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.model.VeicoloVo;
-import it.thehighfly.the_high_fly.repository.BookingDao;
+import it.thehighfly.the_high_fly.repository.BookingDaoImpl;
 import it.thehighfly.the_high_fly.repository.ClienteDao;
-import it.thehighfly.the_high_fly.repository.VeicoloDao;
+import it.thehighfly.the_high_fly.repository.VeicoloDaoImpl;
 
 public class BookingServiceImpl implements BookingService{
 	
 	//TODO: annotations
-	private VeicoloDao vdao;
+	private VeicoloDaoImpl vdao;
 	private ClienteDao cdao;
-	private BookingDao bdao;
+	private BookingDaoImpl bdao;
 	
 	@Override
 	public ClienteVo searchClienteByPK(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return null;;
 	}
 
 	@Override
-	public VeicoloVo searchVeicoloByPK(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public VeicoloVo searchVeicoloByPK(int idVeicolo) {
+		return vdao.getVeicolo(idVeicolo);
 	}
 
 	@Override
@@ -34,10 +35,10 @@ public class BookingServiceImpl implements BookingService{
 		}
 		else {
 			//TODO: implementa metodo calcolo differenza giorni
-			return book.getVeicolo().getPrezzo()*calcolaGiorni(book);
+			return book.getVeicolo().getPrezzo()*(bdao.calcolaIntervalloGiorni(book.getIdPrenotazione()));
 				
-			}
 		}
 	}
+	
 
 }

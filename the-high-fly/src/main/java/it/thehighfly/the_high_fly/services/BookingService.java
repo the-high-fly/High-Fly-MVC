@@ -9,5 +9,4 @@ public interface BookingService {
 	ClienteVo searchClienteByPK(int idCliente);
 	VeicoloVo searchVeicoloByPK(int idCliente);
 	double calcolaPrezzoTotale(BookingDto book);
-	int calcolaGiorni(BookingDto book);
 }

@@ -1,5 +1,6 @@
 package it.thehighfly.the_high_fly.repository;
 
+import it.thehighfly.the_high_fly.controller.BookingDto;
 import  it.thehighfly.the_high_fly.model.BookingVo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,9 @@ import java.sql.SQLException;
 
 
 public class BookingDaoImpl implements BookingDao{
+	
+	@AutoWired(required = true)
+	private DatabaseManager databaseManager;
 
 	public BookingVo searchBookByPK(String codice) {
 		Connection connection = null;
@@ -82,6 +86,31 @@ public class BookingDaoImpl implements BookingDao{
 			
 		}
 		return false;
+	}
+	
+public int calcolaIntervalloGiorni(String codice) {
+		
+		Connection connection = null;
+		PreparedStatement pstm = null;
+		
+		String query = "select (DATA_FINE - DATA_INIZIO) from SYS.BOOKING "
+				+ "where ID_PRENOTAZIONE = ?";
+		
+		try {
+			connection = databaseManager.getConnection();
+			pstm = connection.prepareStatement(query);
+			pstm.setString(1, codice);
+			
+			ResultSet rs = pstm.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 
 }
