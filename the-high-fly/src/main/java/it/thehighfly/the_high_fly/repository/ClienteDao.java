@@ -8,4 +8,5 @@ public interface ClienteDao {
 	
 	public boolean insertCliente(int idCliente, int privato, String username, String password);
 
+	public boolean loginCliente(String username, String password);
 }
