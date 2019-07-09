@@ -1,17 +1,20 @@
 package it.thehighfly.the_high_fly.repository;
 
-import it.thehighfly.the_high_fly.controller.BookingDto;
-import  it.thehighfly.the_high_fly.model.BookingVo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import  it.thehighfly.the_high_fly.model.BookingVo;
+import it.thehighfly.the_high_fly.services.DatabaseManager;
+
 
 
 public class BookingDaoImpl implements BookingDao{
 	
-	@AutoWired(required = true)
+	@Autowired(required=true)
 	private DatabaseManager databaseManager;
 
 	public BookingVo searchBookByPK(String codice) {
@@ -88,7 +91,7 @@ public class BookingDaoImpl implements BookingDao{
 		return false;
 	}
 	
-public int calcolaIntervalloGiorni(String codice) {
+	public int calcolaIntervalloGiorni(String codice) {
 		
 		Connection connection = null;
 		PreparedStatement pstm = null;
