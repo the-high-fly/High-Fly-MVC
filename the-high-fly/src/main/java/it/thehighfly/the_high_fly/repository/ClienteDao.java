@@ -6,6 +6,6 @@ public interface ClienteDao {
 
 	public ClienteVo searchClienteByPK(int codice);
 	
-	public boolean insertCliente();
+	public boolean insertCliente(int idCliente, int privato, String username, String password);
 
 }

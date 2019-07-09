@@ -39,7 +39,7 @@ private Connection connection = null;
 	
 	public boolean insertCliente(int idCliente, int privato, String username, String password) {
 				
-		String query = "insert into Cliente(id_Cliente, privato, username, password ) "
+		String query = "insert into Cliente(id_Cliente, privato, username, password) "
 					+ "values (?,?,?,?) ";
 		
 		PreparedStatement pstm = null;
