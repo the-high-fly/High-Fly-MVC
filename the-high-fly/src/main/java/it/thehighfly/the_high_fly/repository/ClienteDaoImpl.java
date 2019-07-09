@@ -37,12 +37,10 @@ private Connection connection = null;
 	
 	
 	
-	public boolean insertCliente(int idCliente, int idVeicolo, String nome, String cognome, int numPartecipanti,
-			double prezzo, String dataPartenza, String dataArrivo, String luogoPartenza, String luogoArrivo, String stato) {
+	public boolean insertCliente(int idCliente, int privato, String username, String password) {
 				
-		String query = "insert into Cliente(idCliente, idVeicolo, nome, cognome, numPartecipanti, " + 
-					"prezzo, dataPartenza, dataArrivo, luogoPartenza, luogoArrivo, stato) "
-					+ "values (?,?,?,?,?,?,?,?,?,?,?) ";
+		String query = "insert into Cliente(id_Cliente, privato, username, password ) "
+					+ "values (?,?,?,?) ";
 		
 		PreparedStatement pstm = null;
 		boolean isNotEmpty = false;
@@ -50,16 +48,9 @@ private Connection connection = null;
 		try {
 			pstm = this.connection.prepareStatement(query);
 			pstm.setInt(1, idCliente);
-			pstm.setInt(2, idVeicolo);
-			pstm.setString(3, nome);
-			pstm.setString(4, cognome);
-			pstm.setInt(5, numPartecipanti);
-			pstm.setDouble(6, prezzo);
-			pstm.setString(7, dataPartenza);
-			pstm.setString(8, dataArrivo);
-			pstm.setString(9, luogoPartenza);
-			pstm.setString(10, luogoArrivo);
-			pstm.setString(11, stato);
+			pstm.setInt(2, privato);
+			pstm.setString(3, username);
+			pstm.setString(4, password);
 			
 			int rowsInserite = pstm.executeUpdate();
 			if (rowsInserite == 1) {
