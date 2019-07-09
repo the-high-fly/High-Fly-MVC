@@ -19,7 +19,7 @@ public class BookingServiceImpl implements BookingService{
 	
 	@Override
 	public ClienteVo searchClienteByPK(int idCliente) {
-		return null;;
+		return null;
 	}
 
 	@Override

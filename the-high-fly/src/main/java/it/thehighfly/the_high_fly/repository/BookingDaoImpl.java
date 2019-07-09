@@ -92,7 +92,7 @@ public class BookingDaoImpl implements BookingDao{
 	}
 	
 	public int calcolaIntervalloGiorni(String codice) {
-		
+		int giorni = -1;
 		Connection connection = null;
 		PreparedStatement pstm = null;
 		
@@ -107,13 +107,14 @@ public class BookingDaoImpl implements BookingDao{
 			ResultSet rs = pstm.executeQuery();
 			
 			if(rs.next()) {
-				return rs.getInt(1);
+				giorni = rs.getInt(1);
 			}
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
-			return -1;
 		}
+		return giorni;
+		
 	}
 
 }
