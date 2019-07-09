@@ -9,10 +9,10 @@ public class Prenotazione {
 	private double prezzoTotale;
 	private String stato;
 	private ClienteVo cliente;
-	private Veicolo veicolo;
+	private VeicoloVo veicolo;
 	
 	public Prenotazione(int id, int numPartcipanti, String nome, String cognome, double prezzoTotale, String stato,
-			ClienteVo cliente, Veicolo veicolo) {
+			ClienteVo cliente, VeicoloVo veicolo) {
 		this.id = id;
 		this.numPartcipanti = numPartcipanti;
 		this.nome = nome;
@@ -79,11 +79,11 @@ public class Prenotazione {
 		this.cliente = cliente;
 	}
 
-	public Veicolo getVeicolo() {
+	public VeicoloVo getVeicolo() {
 		return veicolo;
 	}
 
-	public void setVeicolo(Veicolo veicolo) {
+	public void setVeicolo(VeicoloVo veicolo) {
 		this.veicolo = veicolo;
 	}
 	

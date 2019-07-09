@@ -8,7 +8,7 @@ public class PrenotazionePubblicoVo extends Prenotazione{
 	private String dataPartenza;
 
 		public PrenotazionePubblicoVo(int id, int numPartcipanti, String nome, String cognome, double prezzoTotale,
-				String stato, ClienteVo cliente, Veicolo veicolo, String luogoPartenza, String luogoArrivo,
+				String stato, ClienteVo cliente, VeicoloVo veicolo, String luogoPartenza, String luogoArrivo,
 				String dataPartenza) {
 			super(id, numPartcipanti, nome, cognome, prezzoTotale, stato, cliente, veicolo);
 			this.luogoPartenza = luogoPartenza;
