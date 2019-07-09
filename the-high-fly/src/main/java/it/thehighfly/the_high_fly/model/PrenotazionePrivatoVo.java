@@ -7,7 +7,7 @@ public class PrenotazionePrivatoVo extends Prenotazione {
 	private String dataFine;
 	
 	public PrenotazionePrivatoVo(int id, int numPartcipanti, String nome, String cognome, double prezzoTotale,
-			String stato, ClienteVo cliente, Veicolo veicolo, String dataInizio, String dataFine) {
+			String stato, ClienteVo cliente, VeicoloVo veicolo, String dataInizio, String dataFine) {
 		super(id, numPartcipanti, nome, cognome, prezzoTotale, stato, cliente, veicolo);
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;

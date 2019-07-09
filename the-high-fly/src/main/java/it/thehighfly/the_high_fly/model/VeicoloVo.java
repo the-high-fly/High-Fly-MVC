@@ -1,13 +1,13 @@
 package it.thehighfly.the_high_fly.model;
 
-public class Veicolo {
+public class VeicoloVo {
 
 	private int id;
 	private int numPosti;
 	private double prezzo;
 	private String descrizione;
 	
-	public Veicolo(int id, int numPosti, double prezzo, String descrizione) {
+	public VeicoloVo(int id, int numPosti, double prezzo, String descrizione) {
 		this.id = id;
 		this.numPosti = numPosti;
 		this.prezzo = prezzo;
