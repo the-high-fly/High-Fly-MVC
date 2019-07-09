@@ -22,13 +22,13 @@ public class BookingDto {
 	public BookingDto(BookingVo book) {
 		this.idPrenotazione = book.getIdPrenotazione();
 		//metodo dal service
-		this.ClienteVo = null;
-		this.VeicoloVo = null;
+		this.cliente = null;
+		this.veicolo = null;
 		this.nome = book.getNome();
 		this.cognome = book.getCognome();
 		this.numPartecipanti = book.getNumPartecipanti();
 		//usa il metodo dal service
-		this.prezzoTotale = null;
+		this.prezzoTotale = 0;
 		this.dataInizio = book.getDataInizio();
 		this.dataFine = book.getDataFine();
 		this.luogoPartenza = book.getLuogoPartenza();
