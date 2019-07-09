@@ -17,37 +17,37 @@ values (8, 0, 'MSC', 'naviii');
 insert into cliente
 values (9, 0, 'Italo', 'trenirossi');
 
-insert into veicolo_privato
+insert into veicolo
 values (1, 5, 100, 'Macchina');
-insert into veicolo_privato
+insert into veicolo
 values (2, 4, 80, 'Macchina');
-insert into veicolo_privato
+insert into veicolo
 values (3, 2, 50, 'Moto');
-insert into veicolo_privato
+insert into veicolo
 values (4, 2, 70, 'Moto');
-insert into veicolo_privato
+insert into veicolo
 values (5, 1, 30, 'Bicicletta');
-insert into veicolo_privato
+insert into veicolo
 values (6, 1, 20, 'Bicicletta');
-insert into veicolo_privato
+insert into veicolo
 values (7, 7, 140, 'Macchina');
 
-insert into veicolo_pubblico
-values (1, 150, 50, 'Treno');
-insert into veicolo_pubblico
-values (2, 80, 300, 'Aereo');
-insert into veicolo_pubblico
-values (3, 50, 350, 'Aereo');
-insert into veicolo_pubblico
-values (4, 60, 400, 'Aereo');
-insert into veicolo_pubblico
-values (5, 200, 35, 'Treno');
-insert into veicolo_pubblico
-values (6, 300, 20, 'Treno');
-insert into veicolo_pubblico
-values (7, 350, 800, 'Nave');
-insert into veicolo_pubblico
-values (8, 400, 1200, 'Nave');
+insert into veicolo
+values (8, 150, 50, 'Treno');
+insert into veicolo
+values (9, 80, 300, 'Aereo');
+insert into veicolo
+values (10, 50, 350, 'Aereo');
+insert into veicolo
+values (11, 60, 400, 'Aereo');
+insert into veicolo
+values (12, 200, 35, 'Treno');
+insert into veicolo
+values (13, 300, 20, 'Treno');
+insert into veicolo
+values (14, 350, 800, 'Nave');
+insert into veicolo
+values (15, 400, 1200, 'Nave');
 
 /*
 insert into prenotazione_pubblico
