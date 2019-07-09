@@ -1,8 +1,11 @@
 package it.thehighfly.the_high_fly.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import it.thehighfly.the_high_fly.model.BookingVo;
 import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.model.VeicoloVo;
+import it.thehighfly.the_high_fly.services.BookingServiceImpl;
 
 public class BookingDto {
 
@@ -19,22 +22,27 @@ public class BookingDto {
 	private String luogoArrivo;
 	private String stato;
 	
-	public BookingDto(BookingVo book) {
-		this.idPrenotazione = book.getIdPrenotazione();
-		//metodo dal service
-		this.cliente = null;
-		this.veicolo = null;
-		this.nome = book.getNome();
-		this.cognome = book.getCognome();
-		this.numPartecipanti = book.getNumPartecipanti();
-		//usa il metodo dal service
-		this.prezzoTotale = 0;
-		this.dataInizio = book.getDataInizio();
-		this.dataFine = book.getDataFine();
-		this.luogoPartenza = book.getLuogoPartenza();
-		this.luogoArrivo = book.getLuogoArrivo();
-		this.stato = book.getStato();
+	@Autowired
+	private BookingServiceImpl bs;
+	
+
+	public BookingDto(String idPrenotazione, int idCliente, int idVeicolo, String nome, String cognome,
+			int numPartecipanti, double prezzoTotale, String dataInizio, String dataFine, String luogoPartenza,
+			String luogoArrivo, String stato) {
 		
+		this.bs = new BookingServiceImpl();
+		this.idPrenotazione = idPrenotazione;
+		this.cliente = bs.searchClienteByPK(idCliente);
+		this.veicolo = bs.searchVeicoloByPK(idVeicolo);
+		this.nome = nome;
+		this.cognome = cognome;
+		this.numPartecipanti = numPartecipanti;
+		this.prezzoTotale = bs.calcolaPrezzoTotale(idPrenotazione);
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.luogoPartenza = luogoPartenza;
+		this.luogoArrivo = luogoArrivo;
+		this.stato = stato;
 	}
 
 	public String getIdPrenotazione() {
