@@ -11,7 +11,7 @@ public class ClienteDaoImpl {
 	
 private Connection connection = null;
 
-	public ClienteVo searchClienteByPK(String codice) {
+	public ClienteVo searchClienteByPK(int codice) {
 		String sql = "select * from cliente where id_cliente = ?";
 		ClienteVo cliente= null;
 		
@@ -19,7 +19,7 @@ private Connection connection = null;
 		
 		try {
 			pstm = this.connection.prepareStatement(sql);
-			pstm.setString(1, codice);
+			pstm.setInt(1, codice);
 			
 			
 			ResultSet rs = pstm.executeQuery();
