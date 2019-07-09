@@ -3,6 +3,7 @@ package it.thehighfly.the_high_fly.repository;
 import  it.thehighfly.the_high_fly.model.BookingVo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -10,8 +11,33 @@ import java.sql.SQLException;
 public class BookingDaoImpl implements BookingDao{
 
 	public BookingVo searchBookByPK(String codice) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		PreparedStatement pstm = null;
+		
+		String query = "select * from SYS.BOOKING where ID_PRENOTAZIONE = ?";
+		
+		BookingVo book = null;
+		
+		try {
+			pstm = connection.prepareStatement(query);
+			pstm.setString(1, codice);
+			ResultSet rs = pstm.executeQuery();
+			
+			if(rs.next()) {
+				book = new BookingVo(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
+						rs.getString(5), rs.getInt(6), rs.getDouble(7), rs.getString(8), rs.getString(9),
+						rs.getString(10), rs.getString(11), rs.getString(12));
+				System.out.println("La ricerca è andata a buon fine!");
+				return book;
+			}
+			
+		}
+		catch(SQLException e) {
+			System.out.println("La ricerca non è andata a buon fine.");
+		}
+		
+		System.out.println("Nessun utente corrisponde ai criteri di ricerca.");
+		return book;
 	}
 
 	public boolean insertBook(int idCliente, int idVeicolo, String nome, String cognome, int numPartecipanti,
