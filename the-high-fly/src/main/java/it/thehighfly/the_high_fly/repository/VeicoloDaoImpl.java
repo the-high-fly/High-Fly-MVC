@@ -45,4 +45,25 @@ public class VeicoloDaoImpl implements VeicoloDao {
 		listaVeicoli.forEach((VeicoloVo v) -> System.out.println(v));
 	}
 
+	@Override
+	public VeicoloVo getVeicolo(int id) {
+		String query = "select * from veicolo where id_veicolo = ?";
+		VeicoloVo veicolo = null;
+		Connection connection = null;
+		PreparedStatement stm;
+		try {
+			stm = connection.prepareStatement(query);
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+			
+			if(rs.next()) {
+				veicolo = new VeicoloVo(rs.getInt(1), rs.getInt(2), 
+						rs.getDouble(3), rs.getString(4));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return veicolo;
+	}
+
 }
