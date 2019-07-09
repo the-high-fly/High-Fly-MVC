@@ -9,4 +9,6 @@ public interface VeicoloDao {
 	public ArrayList<VeicoloVo> getListaVeicoli();
 	
 	public void printListaVeicoli(ArrayList<VeicoloVo> listaVeicoli);
+	
+	public VeicoloVo getVeicolo(int id);
 }

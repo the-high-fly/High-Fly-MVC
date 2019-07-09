@@ -17,6 +17,8 @@ public class BookingVo {
 	private String luogoArrivo;
 	private String stato;
 	
+	
+	//costruttore usato per generare una nuova prenotazione e immettere il record dal database
 	public BookingVo(int idCliente, int idVeicolo, String nome, String cognome, int numPartecipanti, double prezzoTotale,
 			String dataInizio, String dataFine, String luogoPartenza, String luogoArrivo, String stato) {
 		this.idPrenotazione = UUID.randomUUID().toString();
@@ -32,6 +34,31 @@ public class BookingVo {
 		this.luogoArrivo = luogoArrivo;
 		this.stato = stato;
 	}
+
+	
+	
+	//costruttore usato per recuperare un record dal database (il codice prenotazione è stato
+	//generato in precedenza quindi è richiesto in input)
+	public BookingVo(String idPrenotazione, int idCliente, int idVeicolo, String nome, String cognome,
+			int numPartecipanti, double prezzoTotale, String dataInizio, String dataFine, String luogoPartenza,
+			String luogoArrivo, String stato) {
+		super();
+		this.idPrenotazione = idPrenotazione;
+		this.idCliente = idCliente;
+		this.idVeicolo = idVeicolo;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.numPartecipanti = numPartecipanti;
+		this.prezzoTotale = prezzoTotale;
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.luogoPartenza = luogoPartenza;
+		this.luogoArrivo = luogoArrivo;
+		this.stato = stato;
+	}
+
+
+
 
 	public String getIdPrenotazione() {
 		return idPrenotazione;
