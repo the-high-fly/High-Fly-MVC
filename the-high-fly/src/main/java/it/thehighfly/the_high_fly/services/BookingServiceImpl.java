@@ -1,9 +1,9 @@
 package it.thehighfly.the_high_fly.services;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import it.thehighfly.the_high_fly.controller.BookingDto;
+import it.thehighfly.the_high_fly.model.BookingVo;
 import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.model.VeicoloVo;
 import it.thehighfly.the_high_fly.repository.BookingDaoImpl;
@@ -12,9 +12,11 @@ import it.thehighfly.the_high_fly.repository.VeicoloDaoImpl;
 
 public class BookingServiceImpl implements BookingService{
 	
-	//TODO: annotations
+	@Autowired
 	private VeicoloDaoImpl vdao;
+	@Autowired
 	private ClienteDao cdao;
+	@Autowired
 	private BookingDaoImpl bdao;
 	
 	@Override
@@ -34,10 +36,17 @@ public class BookingServiceImpl implements BookingService{
 			return book.getVeicolo().getPrezzo()*book.getNumPartecipanti();
 		}
 		else {
-			//TODO: implementa metodo calcolo differenza giorni
 			return book.getVeicolo().getPrezzo()*(bdao.calcolaIntervalloGiorni(book.getIdPrenotazione()));
 				
 		}
+	}
+
+	@Override
+	public BookingVo getVoFromBookingDto(BookingDto bdto) {
+		return new BookingVo(bdto.getIdPrenotazione(), bdto.getCliente().getIdCliente(), 
+				bdto.getVeicolo().getId(), bdto.getNome(), bdto.getCognome(),
+				bdto.getNumPartecipanti(), calcolaPrezzoTotale(bdto), bdto.getDataInizio(), 
+				bdto.getDataFine(), bdto.getLuogoPartenza(), bdto.getLuogoArrivo(), bdto.getStato());
 	}
 	
 

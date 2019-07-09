@@ -113,7 +113,6 @@ public class BookingDaoImpl implements BookingDao{
 			e.printStackTrace();
 		}
 		return giorni;
-		
 	}
 
 }

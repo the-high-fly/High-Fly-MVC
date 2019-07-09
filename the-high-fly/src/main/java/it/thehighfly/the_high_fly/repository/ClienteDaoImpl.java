@@ -65,4 +65,29 @@ private Connection connection = null;
 		return isNotEmpty;
 				
 	}
+	
+	public boolean loginCliente(String username, String password) {
+		
+		String sql = "select username, password from cliente where username = ? and password = ?";
+		
+		PreparedStatement pstm = null;
+		boolean login = false;
+		
+		try {
+			pstm = this.connection.prepareStatement(sql);
+			pstm.setString(1, username);
+			pstm.setString(2, password);
+			
+			ResultSet rs = pstm.executeQuery();
+			
+			if(rs.next()) {
+				login = (rs.getString("username").equals(username) & rs.getString("password").equals(password));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return login;
+	}
+	
+		
 }
