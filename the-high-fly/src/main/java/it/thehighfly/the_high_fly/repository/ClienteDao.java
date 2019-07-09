@@ -40,10 +40,38 @@ private Connection connection = null;
 	public boolean insertBook(int idCliente, int idVeicolo, String nome, String cognome, int numPartecipanti,
 			double prezzo, String dataPartenza, String dataArrivo, String luogoPartenza, String luogoArrivo, String stato) {
 				
+		String query = "insert into Cliente(idCliente, idVeicolo, nome, cognome, numPartecipanti, " + 
+					"prezzo, dataPartenza, dataArrivo, luogoPartenza, luogoArrivo, stato) "
+					+ "values (?,?,?,?,?,?,?,?,?,?,?) ";
+		
+		PreparedStatement pstm = null;
+		boolean isNotEmpty = false;
+		
+		try {
+			pstm = this.connection.prepareStatement(query);
+			pstm.setInt(1, idCliente);
+			pstm.setInt(2, idVeicolo);
+			pstm.setString(3, nome);
+			pstm.setString(4, cognome);
+			pstm.setInt(5, numPartecipanti);
+			pstm.setDouble(6, prezzo);
+			pstm.setString(7, dataPartenza);
+			pstm.setString(8, dataArrivo);
+			pstm.setString(9, luogoPartenza);
+			pstm.setString(10, luogoArrivo);
+			pstm.setString(11, stato);
+			
+			int rowsInserite = pstm.executeUpdate();
+			if (rowsInserite == 1) {
+				System.out.println("cliente inserito correttamente");
+				isNotEmpty = true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 		
-		
-		return false;
+		return isNotEmpty;
 		
 		
 				
