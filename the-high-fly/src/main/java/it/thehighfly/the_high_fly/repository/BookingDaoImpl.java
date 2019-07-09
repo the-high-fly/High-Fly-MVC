@@ -18,7 +18,6 @@ public class BookingDaoImpl implements BookingDao{
 	private DatabaseManager databaseManager;
 
 	public BookingVo searchBookByPK(String codice) {
-		Connection connection = null;
 		PreparedStatement pstm = null;
 		
 		String query = "select * from SYS.BOOKING where ID_PRENOTAZIONE = ?";
@@ -26,7 +25,7 @@ public class BookingDaoImpl implements BookingDao{
 		BookingVo book = null;
 		
 		try {
-			pstm = connection.prepareStatement(query);
+			pstm = databaseManager.getConnection().prepareStatement(query);
 			pstm.setString(1, codice);
 			ResultSet rs = pstm.executeQuery();
 			
@@ -51,7 +50,7 @@ public class BookingDaoImpl implements BookingDao{
 			double prezzo, String dataInizio, String dataFine, String luogoPartenza, String luogoArrivo,
 			String stato) {
 		
-		Connection connection = null;
+		//Connection connection = null;
 		
 		String query = "insert into SYS.BOOKING values (?, ?, ?, ?, ?, ?, ?, to_date(?, 'DD/MM/YYYY'), "
 				+ "to_date(?, 'DD/MM/YYYY'), ?, ?, ?)";
@@ -64,7 +63,7 @@ public class BookingDaoImpl implements BookingDao{
 			book = new BookingVo(idCliente, idVeicolo, nome, cognome, numPartecipanti, prezzo, dataInizio, dataFine, 
 					luogoPartenza, luogoArrivo, stato);
 			
-			pstm = connection.prepareStatement(query);
+			pstm = databaseManager.getConnection().prepareStatement(query);
 			
 			pstm.setString(1, book.getIdPrenotazione());
 			pstm.setInt(2, book.getIdCliente());
