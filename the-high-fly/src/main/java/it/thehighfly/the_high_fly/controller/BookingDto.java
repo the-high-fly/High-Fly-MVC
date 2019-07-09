@@ -91,14 +91,6 @@ public class BookingDto {
 		this.numPartecipanti = numPartecipanti;
 	}
 
-	public double getPrezzoTotale() {
-		return prezzoTotale;
-	}
-
-	public void setPrezzoTotale(double prezzoTotale) {
-		this.prezzoTotale = prezzoTotale;
-	}
-
 	public String getDataInizio() {
 		return dataInizio;
 	}
