@@ -15,7 +15,6 @@ public class BookingDto {
 	private String nome;
 	private String cognome;
 	private int numPartecipanti;
-	private double prezzoTotale;
 	private String dataInizio;
 	private String dataFine;
 	private String luogoPartenza;
@@ -27,7 +26,7 @@ public class BookingDto {
 	
 
 	public BookingDto(String idPrenotazione, int idCliente, int idVeicolo, String nome, String cognome,
-			int numPartecipanti, double prezzoTotale, String dataInizio, String dataFine, String luogoPartenza,
+			int numPartecipanti, String dataInizio, String dataFine, String luogoPartenza,
 			String luogoArrivo, String stato) {
 		
 		this.bs = new BookingServiceImpl();
@@ -37,7 +36,6 @@ public class BookingDto {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.numPartecipanti = numPartecipanti;
-		this.prezzoTotale = bs.calcolaPrezzoTotale(idPrenotazione);
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
 		this.luogoPartenza = luogoPartenza;
