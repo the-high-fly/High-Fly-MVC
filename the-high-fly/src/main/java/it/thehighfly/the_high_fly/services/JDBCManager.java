@@ -7,12 +7,12 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import it.thehighfly.the_high_fly.config.ConfigBean;
 import oracle.jdbc.pool.OracleDataSource;
 
-@Component("jdbcManager")
+@Service("jdbcManager")
 @Scope(value = "singleton")
 public class JDBCManager implements DatabaseManager {
 
