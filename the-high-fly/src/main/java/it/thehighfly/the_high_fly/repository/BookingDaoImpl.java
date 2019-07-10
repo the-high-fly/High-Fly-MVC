@@ -16,6 +16,7 @@ public class BookingDaoImpl implements BookingDao{
 	
 	@Autowired(required=true)
 	private DatabaseManager databaseManager;
+	
 
 	public BookingVo searchBookByPK(String codice) {
 		PreparedStatement pstm = null;
