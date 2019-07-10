@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "it.clever.springsec.*" })
+@ComponentScan(basePackages = { "it.thehighfly.the_high_fly.*" })
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

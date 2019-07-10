@@ -9,7 +9,7 @@ import it.thehighfly.the_high_fly.repository.VeicoloDao;
 
 public class VeicoloServiceImpl implements VeicoloService {
 	
-	@Autowired
+	@Autowired(required=true)
 	private VeicoloDao veicolo;
 
 	@Override
