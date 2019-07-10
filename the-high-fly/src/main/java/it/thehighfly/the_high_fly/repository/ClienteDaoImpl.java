@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.services.DatabaseManager;
 
+@Repository(value="clienteDao")
 public class ClienteDaoImpl implements ClienteDao{
 
 private Connection connection = null;
