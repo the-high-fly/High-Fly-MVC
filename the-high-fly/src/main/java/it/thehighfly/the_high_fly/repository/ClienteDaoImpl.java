@@ -5,12 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import it.thehighfly.the_high_fly.model.ClienteVo;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ClienteDaoImpl {
+import it.thehighfly.the_high_fly.model.ClienteVo;
+import it.thehighfly.the_high_fly.services.DatabaseManager;
+
+public class ClienteDaoImpl implements ClienteDao{
 	
 private Connection connection = null;
 
+@Autowired(required=true)
+private DatabaseManager databaseManager; 
+	
+	@Override
 	public ClienteVo searchClienteByPK(int codice) {
 		String sql = "select * from cliente where id_cliente = ?";
 		ClienteVo cliente= null;
@@ -18,7 +25,8 @@ private Connection connection = null;
 		PreparedStatement pstm = null;
 		
 		try {
-			pstm = this.connection.prepareStatement(sql);
+			connection = databaseManager.getConnection();
+			pstm = connection.prepareStatement(sql);
 			pstm.setInt(1, codice);
 			
 			
@@ -46,7 +54,8 @@ private Connection connection = null;
 		boolean isNotEmpty = false;
 		
 		try {
-			pstm = this.connection.prepareStatement(query);
+			connection = databaseManager.getConnection();
+			pstm = connection.prepareStatement(query);
 			pstm.setInt(1, idCliente);
 			pstm.setInt(2, privato);
 			pstm.setString(3, username);
@@ -74,7 +83,8 @@ private Connection connection = null;
 		boolean login = false;
 		
 		try {
-			pstm = this.connection.prepareStatement(sql);
+			connection = databaseManager.getConnection();
+			pstm = connection.prepareStatement(sql);
 			pstm.setString(1, username);
 			pstm.setString(2, password);
 			
