@@ -13,7 +13,7 @@ import it.thehighfly.the_high_fly.model.VeicoloVo;
 import it.thehighfly.the_high_fly.services.VeicoloService;
 
 @RestController
-@RequestMapping("/veicolo")
+@RequestMapping("/api")
 public class VeicoloController {
 	
 	@Autowired
