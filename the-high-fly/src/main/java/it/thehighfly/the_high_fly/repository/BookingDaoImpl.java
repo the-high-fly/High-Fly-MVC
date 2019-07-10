@@ -21,7 +21,7 @@ public class BookingDaoImpl implements BookingDao{
 
 	public BookingVo searchBookByPK(String codice) {
 		PreparedStatement pstm = null;
-		
+		Connection connection = null;
 		String query = "select * from SYS.BOOKING where ID_PRENOTAZIONE = ?";
 		
 		BookingVo book = null;
@@ -52,16 +52,13 @@ public class BookingDaoImpl implements BookingDao{
 			double prezzo, String dataInizio, String dataFine, String luogoPartenza, String luogoArrivo,
 			String stato) {
 		
-		//Connection connection = null;
-		
 		String query = "insert into SYS.BOOKING values (?, ?, ?, ?, ?, ?, ?, to_date(?, 'DD/MM/YYYY'), "
 				+ "to_date(?, 'DD/MM/YYYY'), ?, ?, ?)";
 		BookingVo book = null;
+		Connection connection = null;
 		PreparedStatement pstm = null;
 		
 		try {
-			
-			//TODO: initialize connection
 			book = new BookingVo(idCliente, idVeicolo, nome, cognome, numPartecipanti, prezzo, dataInizio, dataFine, 
 					luogoPartenza, luogoArrivo, stato);
 			
