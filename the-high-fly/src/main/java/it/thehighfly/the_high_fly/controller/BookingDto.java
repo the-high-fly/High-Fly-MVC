@@ -1,64 +1,41 @@
-package it.thehighfly.the_high_fly.model;
+package it.thehighfly.the_high_fly.controller;
 
-import java.util.UUID;
 
-public class BookingVo {
+import it.thehighfly.the_high_fly.model.ClienteVo;
+import it.thehighfly.the_high_fly.model.VeicoloVo;
+
+
+public class BookingDto {
 
 	private String idPrenotazione;
-	private int idCliente;
-	private int idVeicolo;
+	private ClienteVo cliente;
+	private VeicoloVo veicolo;
 	private String nome;
 	private String cognome;
 	private int numPartecipanti;
-	private double prezzoTotale;
 	private String dataInizio;
 	private String dataFine;
 	private String luogoPartenza;
 	private String luogoArrivo;
 	private String stato;
 	
-	
-	//costruttore usato per generare una nuova prenotazione e immettere il record dal database
-	public BookingVo(int idCliente, int idVeicolo, String nome, String cognome, int numPartecipanti, double prezzoTotale,
-			String dataInizio, String dataFine, String luogoPartenza, String luogoArrivo, String stato) {
-		this.idPrenotazione = UUID.randomUUID().toString();
-		this.idCliente = idCliente;
-		this.idVeicolo = idVeicolo;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.numPartecipanti = numPartecipanti;
-		this.prezzoTotale = prezzoTotale;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
-		this.luogoPartenza = luogoPartenza;
-		this.luogoArrivo = luogoArrivo;
-		this.stato = stato;
-	}
 
-	
-	
-	//costruttore usato per recuperare un record dal database (il codice prenotazione è stato
-	//generato in precedenza quindi è richiesto in input)
-	public BookingVo(String idPrenotazione, int idCliente, int idVeicolo, String nome, String cognome,
-			int numPartecipanti, double prezzoTotale, String dataInizio, String dataFine, String luogoPartenza,
+	public BookingDto(String idPrenotazione, ClienteVo cliente, VeicoloVo veicolo, String nome, String cognome,
+			int numPartecipanti, String dataInizio, String dataFine, String luogoPartenza,
 			String luogoArrivo, String stato) {
-		super();
+		
 		this.idPrenotazione = idPrenotazione;
-		this.idCliente = idCliente;
-		this.idVeicolo = idVeicolo;
+		this.cliente = cliente;
+		this.veicolo = veicolo;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.numPartecipanti = numPartecipanti;
-		this.prezzoTotale = prezzoTotale;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
 		this.luogoPartenza = luogoPartenza;
 		this.luogoArrivo = luogoArrivo;
 		this.stato = stato;
 	}
-
-
-
 
 	public String getIdPrenotazione() {
 		return idPrenotazione;
@@ -68,20 +45,20 @@ public class BookingVo {
 		this.idPrenotazione = idPrenotazione;
 	}
 
-	public int getIdCliente() {
-		return idCliente;
+	public ClienteVo getCliente() {
+		return cliente;
 	}
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(ClienteVo cliente) {
+		this.cliente = cliente;
 	}
 
-	public int getIdVeicolo() {
-		return idVeicolo;
+	public VeicoloVo getVeicolo() {
+		return veicolo;
 	}
 
-	public void setIdVeicolo(int idVeicolo) {
-		this.idVeicolo = idVeicolo;
+	public void setVeicolo(VeicoloVo veicolo) {
+		this.veicolo = veicolo;
 	}
 
 	public String getNome() {
@@ -106,14 +83,6 @@ public class BookingVo {
 
 	public void setNumPartecipanti(int numPartecipanti) {
 		this.numPartecipanti = numPartecipanti;
-	}
-
-	public double getPrezzoTotale() {
-		return prezzoTotale;
-	}
-
-	public void setPrezzoTotale(double prezzoTotale) {
-		this.prezzoTotale = prezzoTotale;
 	}
 
 	public String getDataInizio() {
@@ -155,8 +124,7 @@ public class BookingVo {
 	public void setStato(String stato) {
 		this.stato = stato;
 	}
-	
-	
-	
+
+
 	
 }
