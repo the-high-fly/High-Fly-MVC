@@ -48,6 +48,15 @@ public class BookingServiceImpl implements BookingService{
 				bdto.getNumPartecipanti(), calcolaPrezzoTotale(bdto), bdto.getDataInizio(), 
 				bdto.getDataFine(), bdto.getLuogoPartenza(), bdto.getLuogoArrivo(), bdto.getStato());
 	}
+
+	@Override
+	public BookingDto getDtoFromBookingVo(BookingVo bvo) {
+		return new BookingDto(bvo.getIdPrenotazione(), searchClienteByPK(bvo.getIdCliente()),
+				searchVeicoloByPK(bvo.getIdVeicolo()), bvo.getNome(), bvo.getCognome(), 
+				bvo.getNumPartecipanti(), bvo.getDataInizio(), bvo.getDataFine(), bvo.getLuogoPartenza(),
+				bvo.getLuogoArrivo(), bvo.getStato());
+	}
+	
 	
 
 }

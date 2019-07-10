@@ -11,4 +11,5 @@ public interface BookingService {
 	VeicoloVo searchVeicoloByPK(int idCliente);
 	double calcolaPrezzoTotale(BookingDto book);
 	BookingVo getVoFromBookingDto(BookingDto bdto);
+	BookingDto getDtoFromBookingVo(BookingVo bvo);
 }

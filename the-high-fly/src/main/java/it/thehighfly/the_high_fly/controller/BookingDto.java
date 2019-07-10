@@ -1,11 +1,9 @@
 package it.thehighfly.the_high_fly.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-import it.thehighfly.the_high_fly.model.BookingVo;
 import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.model.VeicoloVo;
-import it.thehighfly.the_high_fly.services.BookingServiceImpl;
+
 
 public class BookingDto {
 
@@ -21,18 +19,14 @@ public class BookingDto {
 	private String luogoArrivo;
 	private String stato;
 	
-	@Autowired
-	private BookingServiceImpl bs;
-	
 
-	public BookingDto(String idPrenotazione, int idCliente, int idVeicolo, String nome, String cognome,
+	public BookingDto(String idPrenotazione, ClienteVo cliente, VeicoloVo veicolo, String nome, String cognome,
 			int numPartecipanti, String dataInizio, String dataFine, String luogoPartenza,
 			String luogoArrivo, String stato) {
 		
-		this.bs = new BookingServiceImpl();
 		this.idPrenotazione = idPrenotazione;
-		this.cliente = bs.searchClienteByPK(idCliente);
-		this.veicolo = bs.searchVeicoloByPK(idVeicolo);
+		this.cliente = cliente;
+		this.veicolo = veicolo;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.numPartecipanti = numPartecipanti;
