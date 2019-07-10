@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import it.thehighfly.the_high_fly.model.VeicoloVo;
 import it.thehighfly.the_high_fly.services.DatabaseManager;
 
-@Repository(value = "VeicoloDao")
+@Repository(value = "veicoloDao")
 public class VeicoloDaoImpl implements VeicoloDao {
  
 	@Autowired(required=true)
