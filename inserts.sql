@@ -51,7 +51,7 @@ values (15, 400, 1200, 'Nave');
 
 /*
 insert into prenotazione_pubblico
-	values ('90cb9bff-6ec0-4bb1-8e90-cd070ac0a03c', 1, 1, 'Vincenzo', 
+	values ('90cb9bff-6ec0-4bb1-8e90-cd070ac0a03c', 1, 8, 'Vincenzo', 
 		'Tronoforo', 150, 7500, to_date('20/10/2019', 'DD/MM/YYYY'), 'Roma', 'Milano', 'Closed');
 TODO aggiungere partenza e arrivo ai veicoli pubblici
 
