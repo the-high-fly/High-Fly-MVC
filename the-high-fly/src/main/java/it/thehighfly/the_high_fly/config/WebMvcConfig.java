@@ -25,11 +25,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		return new AuthManager();
 	}
 	
-	@Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getAuthManager())
-        .addPathPatterns("/**")
-        .excludePathPatterns("/resources/**", "/login");
-    }
+//	@Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(getAuthManager())
+//        .addPathPatterns("/**")
+//        .excludePathPatterns("/resources/**", "/login");
+//    }
 
 }

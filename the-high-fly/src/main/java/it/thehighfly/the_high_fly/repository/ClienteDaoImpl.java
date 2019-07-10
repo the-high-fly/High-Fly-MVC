@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import it.thehighfly.the_high_fly.model.ClienteVo;
 
+
 public class ClienteDaoImpl {
 	
 private Connection connection = null;
