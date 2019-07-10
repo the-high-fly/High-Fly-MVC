@@ -7,4 +7,6 @@ import it.thehighfly.the_high_fly.model.VeicoloVo;
 public interface VeicoloService {
 	
 	ArrayList<VeicoloVo> listVeicoli();
+	
+	VeicoloVo retVeicolo(int idVeicolo);
 }

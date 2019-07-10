@@ -18,6 +18,11 @@ public class VeicoloServiceImpl implements VeicoloService {
 	public ArrayList<VeicoloVo> listVeicoli() {
 		return veicolo.getListaVeicoli();
 	}
+
+	@Override
+	public VeicoloVo retVeicolo(int idVeicolo) {
+		return veicolo.getVeicolo(idVeicolo);
+	}
 	
 	
 }

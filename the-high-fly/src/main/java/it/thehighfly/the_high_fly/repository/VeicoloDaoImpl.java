@@ -48,7 +48,7 @@ public class VeicoloDaoImpl implements VeicoloDao {
 
 	@Override
 	public VeicoloVo getVeicolo(int id) {
-		String query = "select * from veicolo where id_veicolo = ?";
+		String query = "select * from sys.veicolo where id_veicolo = ?";
 		VeicoloVo veicolo = null;
 		Connection connection = null;
 		PreparedStatement stm = null;
