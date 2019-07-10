@@ -8,4 +8,9 @@ public interface BookingDao {
 	
 	public boolean insertBook(int idCliente, int idVeicolo, String nome, String cognome, int numPartecipanti,
 			double prezzo, String dataPartenza, String dataArrivo, String luogoPartenza, String luogoArrivo, String stato);
+	
+	public int calcolaIntervalloGiorni(String codice);
+
+
+
 }

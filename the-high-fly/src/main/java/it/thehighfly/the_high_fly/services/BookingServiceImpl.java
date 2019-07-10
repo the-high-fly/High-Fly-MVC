@@ -1,32 +1,36 @@
 package it.thehighfly.the_high_fly.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.thehighfly.the_high_fly.controller.BookingDto;
 import it.thehighfly.the_high_fly.model.BookingVo;
 import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.model.VeicoloVo;
-import it.thehighfly.the_high_fly.repository.BookingDaoImpl;
+import it.thehighfly.the_high_fly.repository.BookingDao;
 import it.thehighfly.the_high_fly.repository.ClienteDao;
-import it.thehighfly.the_high_fly.repository.VeicoloDaoImpl;
+import it.thehighfly.the_high_fly.repository.VeicoloDao;
 
+@Service("bookingService")
 public class BookingServiceImpl implements BookingService{
 	
 	@Autowired
-	private VeicoloDaoImpl vdao;
+	private VeicoloDao veicoloDao;
 	@Autowired
-	private ClienteDao cdao;
+	private ClienteDao clienteDao;
 	@Autowired
-	private BookingDaoImpl bdao;
+	private BookingDao bookingDao;
 	
 	@Override
 	public ClienteVo searchClienteByPK(int idCliente) {
-		return cdao.searchClienteByPK(idCliente);
+		return clienteDao.searchClienteByPK(idCliente);
 	}
 
 	@Override
 	public VeicoloVo searchVeicoloByPK(int idVeicolo) {
-		return vdao.getVeicolo(idVeicolo);
+		return veicoloDao.getVeicolo(idVeicolo);
 	}
 
 	@Override
@@ -36,7 +40,7 @@ public class BookingServiceImpl implements BookingService{
 			return book.getVeicolo().getPrezzo()*book.getNumPartecipanti();
 		}
 		else {
-			return book.getVeicolo().getPrezzo()*(bdao.calcolaIntervalloGiorni(book.getIdPrenotazione()));
+			return book.getVeicolo().getPrezzo()*(bookingDao.calcolaIntervalloGiorni(book.getIdPrenotazione()));
 				
 		}
 	}
@@ -56,6 +60,18 @@ public class BookingServiceImpl implements BookingService{
 				bvo.getNumPartecipanti(), bvo.getDataInizio(), bvo.getDataFine(), bvo.getLuogoPartenza(),
 				bvo.getLuogoArrivo(), bvo.getStato());
 	}
+
+	@Override
+	public BookingDto getBookingByCode(String code) {
+		return getDtoFromBookingVo(bookingDao.searchBookByPK(code));
+	}
+
+	@Override
+	public ArrayList<BookingDto> getBookingList(int idCliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 

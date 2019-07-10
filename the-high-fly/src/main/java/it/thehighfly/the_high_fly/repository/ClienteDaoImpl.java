@@ -11,7 +11,7 @@ import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.services.DatabaseManager;
 
 public class ClienteDaoImpl implements ClienteDao{
-	
+
 private Connection connection = null;
 
 @Autowired(required=true)
