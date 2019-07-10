@@ -68,8 +68,13 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public ArrayList<BookingDto> getBookingList(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<BookingVo> listVo = bookingDao.getBookingByCliente(idCliente);
+		ArrayList<BookingDto> listDto = new ArrayList<BookingDto>();
+		
+		for (BookingVo bvo : listVo) {
+			listDto.add(getDtoFromBookingVo(bvo));
+		}
+		return listDto;
 	}
 
 	

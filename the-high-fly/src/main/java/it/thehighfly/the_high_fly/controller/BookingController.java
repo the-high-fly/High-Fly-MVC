@@ -11,33 +11,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.thehighfly.the_high_fly.services.BookingService;
-import it.thehighfly.the_high_fly.services.VeicoloService;
 
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/api")
 public class BookingController {
 	
 	@Autowired(required=true)
 	private BookingService bookingService;
 	
-//TODO: fai il metodo in booking service!!!!
-//	@RequestMapping(value = "/listaPrenotazioni/", method = RequestMethod.GET)
-//    public ResponseEntity<ArrayList<BookingDto>> listBooking(int idCliente) {
-//		ArrayList<BookingDto> list;
-//		
-//		try {
-//			list=bookingService.
-//		}
-//		catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		
-//		return list;
-//	}
+	@RequestMapping(value = "/listaPrenotazioni/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ArrayList<BookingDto>> listBooking(@PathVariable("id") int idCliente) {
+		ArrayList<BookingDto> list;
+		
+		try {
+			list=bookingService.getBookingList(idCliente);
+			if(list==null) {
+				System.out.println("Nessuna prenotazione trovata");
+				return new ResponseEntity<ArrayList<BookingDto>>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<ArrayList<BookingDto>>(list, HttpStatus.OK);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<ArrayList<BookingDto>>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
+	
 	@RequestMapping(value="/prenotazione/{code}", method = RequestMethod.GET)
 	public ResponseEntity<BookingDto> getBookByCode(@PathVariable("code") String code){
 		BookingDto book;
