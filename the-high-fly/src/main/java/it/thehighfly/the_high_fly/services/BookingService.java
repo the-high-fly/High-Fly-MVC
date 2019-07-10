@@ -8,7 +8,7 @@ import it.thehighfly.the_high_fly.model.VeicoloVo;
 public interface BookingService {
 
 	ClienteVo searchClienteByPK(int idCliente);
-	VeicoloVo searchVeicoloByPK(int idCliente);
+	VeicoloVo searchVeicoloByPK(int idVeicolo);
 	double calcolaPrezzoTotale(BookingDto book);
 	BookingVo getVoFromBookingDto(BookingDto bdto);
 	BookingDto getDtoFromBookingVo(BookingVo bvo);

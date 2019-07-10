@@ -20,8 +20,8 @@ public class VeicoloServiceImpl implements VeicoloService {
 	}
 
 	@Override
-	public VeicoloVo retVeicolo(int idCliente) {
-		return veicolo.getVeicolo(idCliente);
+	public VeicoloVo retVeicolo(int idVeicolo) {
+		return veicolo.getVeicolo(idVeicolo);
 	}
 	
 	

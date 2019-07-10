@@ -8,5 +8,5 @@ public interface VeicoloService {
 	
 	ArrayList<VeicoloVo> listVeicoli();
 	
-	VeicoloVo retVeicolo(int idCliente);
+	VeicoloVo retVeicolo(int idVeicolo);
 }
