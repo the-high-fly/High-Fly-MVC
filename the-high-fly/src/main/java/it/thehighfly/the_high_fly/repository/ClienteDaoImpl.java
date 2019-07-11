@@ -16,12 +16,12 @@ public class ClienteDaoImpl implements ClienteDao{
 
 private Connection connection = null;
 
-@Autowired(required=true)
-private DatabaseManager databaseManager; 
+	@Autowired(required=true)
+	private DatabaseManager databaseManager; 
 	
 	@Override
 	public ClienteVo searchClienteByPK(int codice) {
-		String sql = "select * from cliente where id_cliente = ?";
+		String sql = "select * from sys.cliente where id_cliente = ?";
 		ClienteVo cliente= null;
 		
 		PreparedStatement pstm = null;
@@ -49,7 +49,7 @@ private DatabaseManager databaseManager;
 	
 	public ClienteVo insertCliente(int idCliente, int privato, String username, String password) {
 				
-		String query = "insert into Cliente(id_Cliente, privato, username, password) "
+		String query = "insert into sys.cliente(id_Cliente, privato, username, password) "
 					+ "values (?,?,?,?) ";
 		
 		PreparedStatement pstm = null;
@@ -70,15 +70,12 @@ private DatabaseManager databaseManager;
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		return cliente;
-				
+		return cliente;		
 	}
 	
 	public ClienteVo loginCliente(String username, String password) {
 		
-		String sql = "select * from cliente where username = ? and password = ?";
+		String sql = "select * from sys.cliente where username = ? and password = ?";
 		
 		PreparedStatement pstm = null;
 		ClienteVo cliente = null;
