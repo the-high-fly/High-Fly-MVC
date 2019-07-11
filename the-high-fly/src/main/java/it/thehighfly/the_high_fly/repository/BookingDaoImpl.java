@@ -165,5 +165,34 @@ public class BookingDaoImpl implements BookingDao{
 			e.printStackTrace();
 		}
 	}
+	
+	public ArrayList<BookingVo> getAllBookings(int idCliente) {
+		ArrayList<BookingVo> listaPrenotazioni = new ArrayList<BookingVo>();
+		PreparedStatement stm = null;
+		
+		String query = "select b.* " + 
+				"from sys.booking b " + 
+				"inner join cliente c " + 
+				"on c.privato = 0 " + 
+				"and c.id_cliente = ?";
+		
+		try {
+			stm = databaseManager.getConnection().prepareStatement(query);
+			stm.setInt(1, idCliente);
+			
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				listaPrenotazioni.add(new BookingVo(rs.getString(1), rs.getInt(2), 
+						rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), 
+						rs.getDouble(7), rs.getString(8), rs.getString(9), rs.getString(10), 
+						rs.getString(11), rs.getString(12)));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPrenotazioni;
+	}
+	
 
 }
