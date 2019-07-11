@@ -1,10 +1,11 @@
 package it.thehighfly.the_high_fly.services;
 
-import it.thehighfly.the_high_fly.model.ClienteVo;
+import it.thehighfly.the_high_fly.controller.ClienteDto;
+import it.thehighfly.the_high_fly.exceptions.UserException;
 
 public interface ClienteService {
 
-	ClienteVo insertCliente(int privato, String username, String password);
-	ClienteVo loginCliente(String username, String password);
+	ClienteDto loginCliente(String username, String password);
+	ClienteDto insertCliente(ClienteDto newCliente) throws UserException;
 
 }
