@@ -50,7 +50,7 @@ private Connection connection = null;
 	public ClienteVo insertCliente(int privato, String username, String password) {
 				
 		String query = "insert into sys.cliente "
-					+ "values (?,?,?) ";
+					+ "values ((select max(id_cliente) from sys_cliente)+1),?,?,?) ";
 		
 		PreparedStatement pstm = null;
 		ClienteVo cliente = null;
