@@ -17,4 +17,6 @@ public interface BookingDao {
 
 	public void closeBook(int idCliente, String code);
 
+	public ArrayList<BookingVo> getAllBookings(int idCliente);
+
 }

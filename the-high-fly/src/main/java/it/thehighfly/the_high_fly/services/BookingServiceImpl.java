@@ -83,7 +83,12 @@ public class BookingServiceImpl implements BookingService{
 		bookingDao.closeBook(idCliente, code);
 	}
 
-	
-	
-
+	@Override
+	public ArrayList<BookingDto> getAllBookingList(int idCliente) {
+		ArrayList<BookingVo> listaVo = bookingDao.getAllBookings(idCliente);
+		ArrayList<BookingDto> listaDto = new ArrayList<BookingDto>();
+		
+		listaVo.forEach((BookingVo book) -> listaDto.add(getDtoFromBookingVo(book)));
+		return listaDto;
+	}
 }

@@ -17,4 +17,5 @@ public interface BookingService {
 	BookingDto getBookingByCode(String code);
 	ArrayList<BookingDto> getBookingList(int idCliente);
 	public void closeBook(int idCliente, String code);
+	public ArrayList<BookingDto> getAllBookingList(int idCliente);
 }
