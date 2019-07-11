@@ -1,9 +1,10 @@
 package it.thehighfly.the_high_fly.repository;
 
-import java.sql.Connection;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,6 @@ public class BookingDaoImpl implements BookingDao{
 
 	public BookingVo searchBookByPK(String codice) {
 		PreparedStatement pstm = null;
-		Connection connection = null;
 		String query = "select * from SYS.BOOKING where ID_PRENOTAZIONE = ?";
 		
 		BookingVo book = null;
@@ -55,7 +55,6 @@ public class BookingDaoImpl implements BookingDao{
 		String query = "insert into SYS.BOOKING values (?, ?, ?, ?, ?, ?, ?, to_date(?, 'DD/MM/YYYY'), "
 				+ "to_date(?, 'DD/MM/YYYY'), ?, ?, ?)";
 		BookingVo book = null;
-		Connection connection = null;
 		PreparedStatement pstm = null;
 		
 		try {
@@ -91,15 +90,13 @@ public class BookingDaoImpl implements BookingDao{
 	
 	public int calcolaIntervalloGiorni(String codice) {
 		int giorni = -1;
-		Connection connection = null;
 		PreparedStatement pstm = null;
 		
 		String query = "select (DATA_FINE - DATA_INIZIO) from SYS.BOOKING "
 				+ "where ID_PRENOTAZIONE = ?";
 		
 		try {
-			connection = databaseManager.getConnection();
-			pstm = connection.prepareStatement(query);
+			pstm = databaseManager.getConnection().prepareStatement(query);
 			pstm.setString(1, codice);
 			
 			ResultSet rs = pstm.executeQuery();
@@ -113,5 +110,89 @@ public class BookingDaoImpl implements BookingDao{
 		}
 		return giorni;
 	}
+	
+	public ArrayList<BookingVo> getBookingByCliente(int idCliente) {
+		ArrayList<BookingVo> lista = new ArrayList<BookingVo>();
+		PreparedStatement pstm = null;
+		
+		String query = "select * from SYS.BOOKING "
+				+ "where ID_CLIENTE = ?";
+		
+		try {
+			pstm = databaseManager.getConnection().prepareStatement(query);
+			pstm.setInt(1, idCliente);
+			
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				lista.add(new BookingVo(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
+						rs.getString(5), rs.getInt(6), rs.getDouble(7), rs.getString(8),
+						rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12)));
+			}
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public void closeBook(int idCliente, String code) {
+		CallableStatement cs = null;
+		String query = "declare " + 
+				"priv number; " + 
+				"begin " + 
+				"select privato " + 
+				"into priv " + 
+				"from sys.cliente " + 
+				"where id_cliente = ?; " + 
+				"if(priv=0) " + 
+				"then " + 
+				"UPDATE SYS.BOOKING  " + 
+				"SET STATO = 'Closed' " + 
+				"WHERE ID_PRENOTAZIONE = ?; " + 
+				"end if; " + 
+				"end; ";
+		
+		try {
+			cs = databaseManager.getConnection().prepareCall(query);
+			cs.setInt(1, idCliente);
+			cs.setString(2, code);
+			
+			cs.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<BookingVo> getAllBookings(int idCliente) {
+		ArrayList<BookingVo> listaPrenotazioni = new ArrayList<BookingVo>();
+		PreparedStatement stm = null;
+		
+		String query = "select b.* " + 
+				"from sys.booking b " + 
+				"inner join cliente c " + 
+				"on c.privato = 0 " + 
+				"and c.id_cliente = ?";
+		
+		try {
+			stm = databaseManager.getConnection().prepareStatement(query);
+			stm.setInt(1, idCliente);
+			
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				listaPrenotazioni.add(new BookingVo(rs.getString(1), rs.getInt(2), 
+						rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), 
+						rs.getDouble(7), rs.getString(8), rs.getString(9), rs.getString(10), 
+						rs.getString(11), rs.getString(12)));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return listaPrenotazioni;
+	}
+	
 
 }

@@ -1,9 +1,11 @@
 package it.thehighfly.the_high_fly.services;
 
+import it.thehighfly.the_high_fly.controller.ClienteDto;
+import it.thehighfly.the_high_fly.exceptions.UserException;
 
 public interface ClienteService {
 
-	boolean insertCliente(int idCliente, int privato, String username, String password);
-	boolean loginCliente(String username, String password);
+	ClienteDto loginCliente(String username, String password);
+	ClienteDto insertCliente(ClienteDto newCliente) throws UserException;
 
 }
