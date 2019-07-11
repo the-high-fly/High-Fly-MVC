@@ -41,7 +41,7 @@ public class VeicoloController {
 		VeicoloVo veicolo;
 		try {
 			veicolo = veicoloService.retVeicolo(id);
-			if (veicolo == null) {
+			if (veicolo == null) { 
 				System.out.println("Veicolo " + id + " non trovato");
 				return new ResponseEntity<VeicoloVo>(HttpStatus.NOT_FOUND);
 			}

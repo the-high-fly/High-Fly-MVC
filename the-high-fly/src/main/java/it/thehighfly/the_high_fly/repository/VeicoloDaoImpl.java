@@ -14,7 +14,7 @@ import it.thehighfly.the_high_fly.services.DatabaseManager;
 
 @Repository(value = "veicoloDao")
 public class VeicoloDaoImpl implements VeicoloDao {
- 
+  
 	@Autowired(required=true)
 	private DatabaseManager databaseManager; 
 	

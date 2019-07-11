@@ -12,16 +12,16 @@ import it.thehighfly.the_high_fly.repository.VeicoloDao;
 public class VeicoloServiceImpl implements VeicoloService {
 	
 	@Autowired(required=true)
-	private VeicoloDao veicolo;
+	private VeicoloDao veicoloDao;
 
 	@Override
 	public ArrayList<VeicoloVo> listVeicoli() {
-		return veicolo.getListaVeicoli();
+		return veicoloDao.getListaVeicoli();
 	}
 
 	@Override
 	public VeicoloVo retVeicolo(int idVeicolo) {
-		return veicolo.getVeicolo(idVeicolo);
+		return veicoloDao.getVeicolo(idVeicolo);
 	}
 	
 	

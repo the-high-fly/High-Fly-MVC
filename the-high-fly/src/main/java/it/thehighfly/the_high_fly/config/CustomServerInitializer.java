@@ -21,10 +21,10 @@ public class CustomServerInitializer extends AbstractAnnotationConfigDispatcherS
         return new String[] { "/" };
     }
     
-    @Override
-    protected Filter[] getServletFilters() {
-    	Filter [] singleton = { new CorsFilter()};
-    	return singleton;
-    }
+//    @Override
+//    protected Filter[] getServletFilters() {
+//    	Filter [] singleton = { new CorsFilter()};
+//    	return singleton;
+//    }
  
 }

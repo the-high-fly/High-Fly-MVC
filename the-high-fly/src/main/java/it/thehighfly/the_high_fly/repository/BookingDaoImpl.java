@@ -1,17 +1,18 @@
 package it.thehighfly.the_high_fly.repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import  it.thehighfly.the_high_fly.model.BookingVo;
 import it.thehighfly.the_high_fly.services.DatabaseManager;
 
 
-
+@Repository(value="bookingDao")
 public class BookingDaoImpl implements BookingDao{
 	
 	@Autowired(required=true)
@@ -20,7 +21,6 @@ public class BookingDaoImpl implements BookingDao{
 
 	public BookingVo searchBookByPK(String codice) {
 		PreparedStatement pstm = null;
-		
 		String query = "select * from SYS.BOOKING where ID_PRENOTAZIONE = ?";
 		
 		BookingVo book = null;
@@ -51,16 +51,12 @@ public class BookingDaoImpl implements BookingDao{
 			double prezzo, String dataInizio, String dataFine, String luogoPartenza, String luogoArrivo,
 			String stato) {
 		
-		//Connection connection = null;
-		
 		String query = "insert into SYS.BOOKING values (?, ?, ?, ?, ?, ?, ?, to_date(?, 'DD/MM/YYYY'), "
 				+ "to_date(?, 'DD/MM/YYYY'), ?, ?, ?)";
 		BookingVo book = null;
 		PreparedStatement pstm = null;
 		
 		try {
-			
-			//TODO: initialize connection
 			book = new BookingVo(idCliente, idVeicolo, nome, cognome, numPartecipanti, prezzo, dataInizio, dataFine, 
 					luogoPartenza, luogoArrivo, stato);
 			
@@ -93,15 +89,13 @@ public class BookingDaoImpl implements BookingDao{
 	
 	public int calcolaIntervalloGiorni(String codice) {
 		int giorni = -1;
-		Connection connection = null;
 		PreparedStatement pstm = null;
 		
 		String query = "select (DATA_FINE - DATA_INIZIO) from SYS.BOOKING "
 				+ "where ID_PRENOTAZIONE = ?";
 		
 		try {
-			connection = databaseManager.getConnection();
-			pstm = connection.prepareStatement(query);
+			pstm = databaseManager.getConnection().prepareStatement(query);
 			pstm.setString(1, codice);
 			
 			ResultSet rs = pstm.executeQuery();
@@ -114,6 +108,32 @@ public class BookingDaoImpl implements BookingDao{
 			e.printStackTrace();
 		}
 		return giorni;
+	}
+	
+	public ArrayList<BookingVo> getBookingByCliente(int idCliente) {
+		ArrayList<BookingVo> lista = new ArrayList<BookingVo>();
+		PreparedStatement pstm = null;
+		
+		String query = "select * from SYS.BOOKING "
+				+ "where ID_CLIENTE = ?";
+		
+		try {
+			pstm = databaseManager.getConnection().prepareStatement(query);
+			pstm.setInt(1, idCliente);
+			
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				lista.add(new BookingVo(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
+						rs.getString(5), rs.getInt(6), rs.getDouble(7), rs.getString(8),
+						rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12)));
+			}
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
 	}
 
 }
