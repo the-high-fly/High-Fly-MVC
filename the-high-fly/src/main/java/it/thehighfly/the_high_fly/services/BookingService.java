@@ -11,9 +11,10 @@ public interface BookingService {
 
 	ClienteVo searchClienteByPK(int idCliente);
 	VeicoloVo searchVeicoloByPK(int idVeicolo);
-	double calcolaPrezzoTotale(BookingDto book);
+	void calcolaPrezzoTotale(BookingDto book);
 	BookingVo getVoFromBookingDto(BookingDto bdto);
 	BookingDto getDtoFromBookingVo(BookingVo bvo);
 	BookingDto getBookingByCode(String code);
 	ArrayList<BookingDto> getBookingList(int idCliente);
+	public void closeBook(int idCliente, String code);
 }

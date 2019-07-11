@@ -1,5 +1,6 @@
 package it.thehighfly.the_high_fly.repository;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -134,6 +135,35 @@ public class BookingDaoImpl implements BookingDao{
 			e.printStackTrace();
 		}
 		return lista;
+	}
+	
+	public void closeBook(int idCliente, String code) {
+		CallableStatement cs = null;
+		String query = "declare " + 
+				"priv number; " + 
+				"begin " + 
+				"select privato " + 
+				"into priv " + 
+				"from sys.cliente " + 
+				"where id_cliente = ?; " + 
+				"if(priv=0) " + 
+				"then " + 
+				"UPDATE SYS.BOOKING  " + 
+				"SET STATO = 'Closed' " + 
+				"WHERE ID_PRENOTAZIONE = ?; " + 
+				"end if; " + 
+				"end; ";
+		
+		try {
+			cs = databaseManager.getConnection().prepareCall(query);
+			cs.setInt(1, idCliente);
+			cs.setString(2, code);
+			
+			cs.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

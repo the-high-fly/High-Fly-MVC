@@ -20,7 +20,7 @@ public class BookingController {
 	@Autowired(required=true)
 	private BookingService bookingService;
 	
-	@RequestMapping(value = "/listaPrenotazioni/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/listaPrenotazioni/", method = RequestMethod.GET)
     public ResponseEntity<ArrayList<BookingDto>> listBooking(@PathVariable("id") int idCliente) {
 		ArrayList<BookingDto> list;
 		
@@ -58,5 +58,8 @@ public class BookingController {
 		}
 		
 	}
+	
+	//@RequestMapping(value="/{id}/prenotazione/{code}/close")
+
 	
 }

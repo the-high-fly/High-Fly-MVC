@@ -34,13 +34,14 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public double calcolaPrezzoTotale(BookingDto book) {
+	public void calcolaPrezzoTotale(BookingDto book) {
 		if (book.getVeicolo().getTipo().equals("Treno") | book.getVeicolo().getTipo().equals("Nave")
 				| book.getVeicolo().getTipo().equals("Aereo")) {
-			return book.getVeicolo().getPrezzo()*book.getNumPartecipanti();
+			book.setPrezzoTotale(book.getVeicolo().getPrezzo()*book.getNumPartecipanti());
 		}
 		else {
-			return book.getVeicolo().getPrezzo()*(bookingDao.calcolaIntervalloGiorni(book.getIdPrenotazione()));
+			book.setPrezzoTotale(book.getVeicolo().getPrezzo()*
+					(bookingDao.calcolaIntervalloGiorni(book.getIdPrenotazione())));
 				
 		}
 	}
@@ -49,7 +50,7 @@ public class BookingServiceImpl implements BookingService{
 	public BookingVo getVoFromBookingDto(BookingDto bdto) {
 		return new BookingVo(bdto.getIdPrenotazione(), bdto.getCliente().getIdCliente(), 
 				bdto.getVeicolo().getId(), bdto.getNome(), bdto.getCognome(),
-				bdto.getNumPartecipanti(), calcolaPrezzoTotale(bdto), bdto.getDataInizio(), 
+				bdto.getNumPartecipanti(), bdto.getPrezzoTotale(), bdto.getDataInizio(), 
 				bdto.getDataFine(), bdto.getLuogoPartenza(), bdto.getLuogoArrivo(), bdto.getStato());
 	}
 
@@ -75,6 +76,11 @@ public class BookingServiceImpl implements BookingService{
 			listDto.add(getDtoFromBookingVo(bvo));
 		}
 		return listDto;
+	}
+
+	@Override
+	public void closeBook(int idCliente, String code) {
+		bookingDao.closeBook(idCliente, code);
 	}
 
 	

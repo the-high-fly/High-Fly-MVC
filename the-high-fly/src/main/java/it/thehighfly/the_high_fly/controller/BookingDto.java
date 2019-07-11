@@ -13,6 +13,7 @@ public class BookingDto {
 	private String nome;
 	private String cognome;
 	private int numPartecipanti;
+	private double prezzoTotale;
 	private String dataInizio;
 	private String dataFine;
 	private String luogoPartenza;
@@ -125,6 +126,14 @@ public class BookingDto {
 		this.stato = stato;
 	}
 
+	public double getPrezzoTotale() {
+		return prezzoTotale;
+	}
 
+	public void setPrezzoTotale(double prezzoTotale) {
+		this.prezzoTotale = prezzoTotale;
+	}
+
+	
 	
 }
