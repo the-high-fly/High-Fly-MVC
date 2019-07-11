@@ -45,13 +45,13 @@ private DatabaseManager databaseManager;
 	
 	
 	
-	public boolean insertCliente(int idCliente, int privato, String username, String password) {
+	public ClienteVo insertCliente(int idCliente, int privato, String username, String password) {
 				
 		String query = "insert into Cliente(id_Cliente, privato, username, password) "
 					+ "values (?,?,?,?) ";
 		
 		PreparedStatement pstm = null;
-		boolean isNotEmpty = false;
+		ClienteVo cliente = null;
 		
 		try {
 			connection = databaseManager.getConnection();
@@ -64,23 +64,22 @@ private DatabaseManager databaseManager;
 			int rowsInserite = pstm.executeUpdate();
 			if (rowsInserite == 1) {
 				System.out.println("cliente inserito correttamente");
-				isNotEmpty = true;
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 		
-		return isNotEmpty;
+		return cliente;
 				
 	}
 	
-	public boolean loginCliente(String username, String password) {
+	public ClienteVo loginCliente(String username, String password) {
 		
-		String sql = "select username, password from cliente where username = ? and password = ?";
+		String sql = "select * from cliente where username = ? and password = ?";
 		
 		PreparedStatement pstm = null;
-		boolean login = false;
+		ClienteVo cliente = null;
 		
 		try {
 			connection = databaseManager.getConnection();
@@ -91,12 +90,12 @@ private DatabaseManager databaseManager;
 			ResultSet rs = pstm.executeQuery();
 			
 			if(rs.next()) {
-				login = (rs.getString("username").equals(username) & rs.getString("password").equals(password));
+				cliente = new ClienteVo(rs.getInt("id_Cliente"), rs.getInt("privato"), rs.getString("username"), rs.getString("password"));			
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return login;
+		return cliente;
 	}
 	
 		
