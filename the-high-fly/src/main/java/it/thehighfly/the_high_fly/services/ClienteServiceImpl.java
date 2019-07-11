@@ -19,8 +19,8 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 	
 	@Override 
-	public ClienteVo insertCliente(int idCliente, int privato, String username, String password) {
-		return clienteDao.insertCliente(idCliente, privato, username, password);
+	public ClienteVo insertCliente(int privato, String username, String password) {
+		return clienteDao.insertCliente(privato, username, password);
 	}
 
 	

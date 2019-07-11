@@ -47,10 +47,10 @@ private Connection connection = null;
 	
 	
 	
-	public ClienteVo insertCliente(int idCliente, int privato, String username, String password) {
+	public ClienteVo insertCliente(int privato, String username, String password) {
 				
-		String query = "insert into sys.cliente(id_Cliente, privato, username, password) "
-					+ "values (?,?,?,?) ";
+		String query = "insert into sys.cliente "
+					+ "values (?,?,?) ";
 		
 		PreparedStatement pstm = null;
 		ClienteVo cliente = null;
@@ -58,10 +58,9 @@ private Connection connection = null;
 		try {
 			connection = databaseManager.getConnection();
 			pstm = connection.prepareStatement(query);
-			pstm.setInt(1, idCliente);
-			pstm.setInt(2, privato);
-			pstm.setString(3, username);
-			pstm.setString(4, password);
+			pstm.setInt(1, privato);
+			pstm.setString(2, username);
+			pstm.setString(3, password);
 			
 			int rowsInserite = pstm.executeUpdate();
 			if (rowsInserite == 1) {
