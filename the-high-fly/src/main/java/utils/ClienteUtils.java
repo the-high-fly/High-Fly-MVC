@@ -1,6 +1,6 @@
 package utils;
 
-import it.thehighfly.the_high_fly.controller.ClienteDto;
+import it.thehighfly.the_high_fly.dto.ClienteDto;
 import it.thehighfly.the_high_fly.model.ClienteVo;
 
 public class ClienteUtils {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.thehighfly.the_high_fly.controller.BookingDto;
+import it.thehighfly.the_high_fly.dto.BookingDto;
 import it.thehighfly.the_high_fly.model.BookingVo;
 import it.thehighfly.the_high_fly.model.ClienteVo;
 import it.thehighfly.the_high_fly.model.VeicoloVo;

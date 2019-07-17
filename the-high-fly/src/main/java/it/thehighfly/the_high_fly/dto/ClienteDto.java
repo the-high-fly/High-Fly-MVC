@@ -1,4 +1,4 @@
-package it.thehighfly.the_high_fly.controller;
+package it.thehighfly.the_high_fly.dto;
 
 public class ClienteDto {
 

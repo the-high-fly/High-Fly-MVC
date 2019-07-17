@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.thehighfly.the_high_fly.dto.BookingDto;
 import it.thehighfly.the_high_fly.services.BookingService;
 
 

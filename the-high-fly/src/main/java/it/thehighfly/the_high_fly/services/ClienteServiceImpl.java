@@ -3,7 +3,7 @@ package it.thehighfly.the_high_fly.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.thehighfly.the_high_fly.controller.ClienteDto;
+import it.thehighfly.the_high_fly.dto.ClienteDto;
 import it.thehighfly.the_high_fly.exceptions.ErrorCodes;
 import it.thehighfly.the_high_fly.exceptions.UserException;
 import it.thehighfly.the_high_fly.model.ClienteVo;

@@ -23,10 +23,9 @@ public class VeicoloController {
 	@RequestMapping(value = "/veicoli/", method = RequestMethod.GET)
     public ResponseEntity<ArrayList<VeicoloVo>> listVehicles() {
     	ArrayList<VeicoloVo> listaVeicoli;
-    	
     	try {
     		listaVeicoli = veicoloService.listVeicoli();
-    		if(listaVeicoli.isEmpty()){
+    		if (listaVeicoli.isEmpty()) {
     			return new ResponseEntity<ArrayList<VeicoloVo>>(HttpStatus.NO_CONTENT);
     		}
     		return new ResponseEntity<ArrayList<VeicoloVo>>(listaVeicoli, HttpStatus.OK);

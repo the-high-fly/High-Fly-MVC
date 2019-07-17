@@ -1,15 +1,15 @@
 package it.thehighfly.the_high_fly.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.thehighfly.the_high_fly.config.ResponseMessage;
+import it.thehighfly.the_high_fly.dto.ClienteDto;
+import it.thehighfly.the_high_fly.dto.LoginDto;
 import it.thehighfly.the_high_fly.exceptions.UserException;
-
 import it.thehighfly.the_high_fly.services.ClienteService;
 
 @RestController
@@ -20,26 +20,27 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@RequestMapping(value = "/login/", method = RequestMethod.POST)
-	public ResponseMessage loginCliente() throws UserException{
+	public ResponseMessage loginCliente(@RequestBody LoginDto loginDto) throws UserException {
 		
 		 ResponseMessage rm = new ResponseMessage();
-		 
+		 String username = null;
+		 String password = null;
 		 try {
-			String username = null;
-			String password = null;
+			username = loginDto.getUsername();
+			password = loginDto.getPassword();
 			ClienteDto logged = clienteService.loginCliente(username, password);
 			rm.setCode("OK"); 
 			rm.setData(logged);
 			
 		 }catch(Exception e) {
 			 rm.setCode("KO");
-			 rm.getErrorMessages().add("Errore grave spegni e riaccendi!");
+			 rm.getErrorMessages().add("Errore grave: spegni e riaccendi!");
 		 }
 		return rm;
 	}
 	
 	@RequestMapping(value= "/registra/", method = RequestMethod.PUT)
-	public ResponseMessage insertCliente(@RequestBody ClienteDto newCliente){
+	public ResponseMessage insertCliente(@RequestBody ClienteDto newCliente) {
 		
 			ResponseMessage rm = new ResponseMessage();
 		try {
@@ -49,11 +50,11 @@ public class ClienteController {
 			
 		}catch(UserException e) {
 			rm.setCode("OK");
-			rm.getErrorMessages().add("error_usercreate_already_exists");
+			rm.getErrorMessages().add("Il cliente esiste già.");
 		
 		}catch(Exception e) {
 			rm.setCode("KO");
-			rm.getErrorMessages().add("Errore grave spegni e riaccendi!");
+			rm.getErrorMessages().add("Errore grave: spegni e riaccendi!");
 		}
 		return rm;
 	}
